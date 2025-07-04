@@ -1,0 +1,84 @@
+============================================================
+INDIAN LEGAL AI ASSISTANT - SETUP INSTRUCTIONS
+============================================================
+
+This application is an AI-powered Legal Assistant focused on Indian law, using:
+- Local LLM (Gemma-2B, quantized GGUF format)
+- LangChain framework
+- Sentence-transformer embeddings
+- Chroma vector database
+- Streamlit for the user interface
+
+------------------------------------------------------------
+SYSTEM REQUIREMENTS
+------------------------------------------------------------
+
+Minimum Recommended:
+- Python 3.10 or higher
+- At least 4 GB RAM (8 GB or more recommended)
+- Linux, macOS, or WSL (Windows Subsystem for Linux)
+- pip and venv installed
+
+Optional:
+- GPU with CUDA support for improved model performance
+
+------------------------------------------------------------
+PROJECT STRUCTURE OVERVIEW
+------------------------------------------------------------
+
+├── legal_assistant_app.py     # Main Streamlit application
+├── download_model.py          # Script to download GGUF model (~1.6 GB)
+├── start.sh                   # Shell script to download model and run app
+├── chroma_db/                 # Vector database (auto-generated)
+├── models/gemma/              # Local directory for LLM (GGUF file)
+├── data/legal_docs/           # PDF files to be indexed
+├── requirements.txt           # Python dependencies
+├── instructions.txt           # This instruction file
+
+------------------------------------------------------------
+HOW TO RUN LOCALLY
+------------------------------------------------------------
+
+1. Create a virtual environment (optional but recommended):
+       python3 -m venv venv
+       source venv/bin/activate
+
+2. Install Python dependencies:
+       pip install -r requirements.txt
+
+3. Download the GGUF model if not already present:
+       python download_model.py
+
+4. Start the Streamlit application:
+       streamlit run legal_assistant_app.py
+
+Alternatively, you can run everything using the shell script:
+
+       ./start.sh
+
+------------------------------------------------------------
+ACCESSING THE APPLICATION
+------------------------------------------------------------
+
+Once running, open your browser and visit:
+
+       http://localhost:8501
+
+If deploying to a remote server (e.g., DigitalOcean or Render), replace `localhost` with your server's IP address.
+
+------------------------------------------------------------
+NOTES
+------------------------------------------------------------
+
+- The model will be automatically downloaded from Hugging Face (~1.6 GB) if not already available.
+- Vector embeddings are created using sentence-transformers and stored via Chroma.
+- The assistant supports legal domain detection (IPC, CrPC, Constitution, Evidence Act, etc.).
+- Once downloaded and indexed, no external API calls or internet connection are required.
+
+------------------------------------------------------------
+LICENSE
+------------------------------------------------------------
+
+This project is open-source. See the LicenseLegalAI file for terms and conditions.
+
+============================================================
